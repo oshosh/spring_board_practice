@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.mini.project.board.dao.BoardDetailDAO">
+      <!-- 
+      게시판 상세 수정시 Boards 테이블의 updated_at 컬럼 업데이트 UPDATE 트리거 추가
+
+      DELIMITER $$
+
+      CREATE TRIGGER update_boards_timestamp
+      AFTER UPDATE ON board_detail
+      FOR EACH ROW
+      BEGIN
+          UPDATE boards 
+          SET updated_at = CURRENT_TIMESTAMP 
+          WHERE id = NEW.boards_id;
+      END $$
+
+      DELIMITER ;
+      -->
+    <update id="update" parameterType="BoardDetail">
+        UPDATE board_detail 
+        SET content = #{content}
+        WHERE boards_id = #{boardsId}
+    </update>
+</mapper>

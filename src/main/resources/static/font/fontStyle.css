@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'KBFGText';
+  font-weight: 300;
+  src: url(/font/KBFGTextL.ttf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KBFGText';
+  font-weight: 500;
+  src: url(/font/KBFGTextM.ttf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KBFGText';
+  font-weight: 700;
+  src: url(/font/KBFGTextB.ttf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KBFGDisplay';
+  font-weight: 300;
+  src: url(/font/KBFGDisplayL.ttf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KBFGDisplay';
+  font-weight: 500;
+  src: url(/font/KBFGDisplayM.ttf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KBFGDisplay';
+  font-weight: 700;
+  src: url(/font/KBFGDisplayB.woff2);
+  font-display: swap;
+}
+
+body {
+  font-family: 'KBFGText', sans-serif;
+}

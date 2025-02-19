@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+ 	</settings>
+	
+	<!-- 별칭 작성 부분 -->
+	<typeAliases>
+		<typeAlias type="kr.co.mini.project.user.entity.User" alias="User"/>
+		<typeAlias type="kr.co.mini.project.boardDetail.entity.BoardDetail" alias="BoardDetail"/>
+	  <typeAlias type="kr.co.mini.project.board.entity.Board" alias="Board"/>
+		<typeAlias type="kr.co.mini.project.board.dto.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="kr.co.mini.project.board.dto.BoardWithDetailDTO" alias="BoardWithDetailDTO"/>
+	</typeAliases>
+	
+</configuration>

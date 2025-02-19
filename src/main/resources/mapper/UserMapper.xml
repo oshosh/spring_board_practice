@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.mini.board.user.dao.UserDAO">
+    <select id="findAll" resultType="User">
+        SELECT * FROM users
+    </select>
+    
+    <select id="findById" parameterType="Integer" resultType="User">
+        SELECT * FROM users WHERE id = #{id}
+    </select>
+    
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users (name)
+        VALUES (#{name})
+    </insert>
+
+    <update id="update" parameterType="User">
+        UPDATE users 
+        SET name = #{name}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+</mapper>

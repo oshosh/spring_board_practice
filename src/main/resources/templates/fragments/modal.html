@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:fragment="modalProps(title, content, imageUrl, modalId)" 
+         th:id="${modalId}"
+         class="modal fade" 
+         tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- 모달 제목 -->
+                    <h5 class="modal-title" th:text="${title}"></h5>
+                    <button type="button" 
+                            class="btn-close" 
+                            data-bs-dismiss="modal" 
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div th:if="${imageUrl}" class="text-center mb-3">
+                        <img th:src="${imageUrl}" 
+                             class="img-fluid" 
+                             style="max-height: 300px;"
+                             alt="Modal Image">
+                    </div>
+                    <!-- 모달 내용 -->
+                    <p th:text="${content}"></p>
+                </div>
+                <div class="modal-footer">
+                    <button 
+                        type="button" 
+                        class="btn btn-secondary" 
+                        data-bs-dismiss="modal"
+                    >
+                        닫기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
