@@ -1,4 +1,4 @@
-package kr.co.mini.project.web;
+package kr.co.mini.project.web.config;
 
 import javax.sql.DataSource;
 

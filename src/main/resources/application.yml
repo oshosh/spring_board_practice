@@ -1,10 +1,23 @@
 server:
   port: 8080
+  # error:
+  #   whitelabel:
+  #     enabled: false
+  #   include-exception: true
+  #   include-stacktrace: never
+  #   include-message: always
 
 spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /static/**
+  web:
+    resources:
+      add-mappings: false
+
   application:
     name: todolist
-
+  
   datasource:
     url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
