@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import kr.co.mini.project.board.dao.BoardDAO;
-import kr.co.mini.project.board.dto.BoardDTO;
+import kr.co.mini.project.board.dto.BoardWithDetailAndComments;
 import kr.co.mini.project.board.dto.BoardWithDetailDTO;
 import kr.co.mini.project.board.entity.Board;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ public class BoardRepository {
         return boardDAO.findAllBoardsWithDetails();
     }
 
-    public Optional<BoardDTO> findBoardWithDetailsAndComments(Integer id) {
+    public Optional<BoardWithDetailAndComments> findBoardWithDetailsAndComments(Integer id) {
         return boardDAO.findBoardWithDetailsAndComments(id);
     }
 }

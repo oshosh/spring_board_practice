@@ -43,22 +43,19 @@ public class GlobalExceptionAdvice {
   
   @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
   @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-  public Object handleHttpRequestMethodNotSupportedException(
+  public ResponseEntity<CommonResponseDto> handleHttpRequestMethodNotSupportedException(
           HttpRequestMethodNotSupportedException ex,
           HttpServletRequest request) {
 
-      if (isApiRequest(request)) {
-          return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
-                  .body(new CommonResponseDto("METHOD_NOT_ALLOWED", "지원하지 않는 메소드입니다."));
-      }
-      return "error/405";
+    return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
+      .body(new CommonResponseDto("METHOD_NOT_ALLOWED", "지원하지 않는 메소드입니다."));
   }
 
   /**
 	 * 관리되지 않은 예상치 않은 에러
 	 */
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<?> handleError(Exception e) {
+	public Object handleError(Exception e, HttpServletRequest request) {
 		log.error("== ERROR: {}", e.getMessage(), e); // FIXME 에러 출력 임시
 
 		String message = e.getMessage();
@@ -71,7 +68,13 @@ public class GlobalExceptionAdvice {
 
 			} else if (httpStatus.is5xxServerError()) {
 				log.error("ServerException : {}", e.getMessage());
-				return ResponseEntity.status(httpStatus).body(new CommonResponseDto("INTERNAL_SERVER_ERROR", "서버 에러입니다."));
+
+        if (isApiRequest(request)) {
+          return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                  .body(new CommonResponseDto("INTERNAL_SERVER_ERROR", "서버 에러입니다."));
+        }
+
+				return "error/500";
 			}
 		}
 

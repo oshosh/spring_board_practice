@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.mini.project.board.dto.BoardDTO;
+import kr.co.mini.project.board.dto.BoardWithDetailAndComments;
 import kr.co.mini.project.board.dto.BoardWithDetailDTO;
 import kr.co.mini.project.board.entity.Board;
 import kr.co.mini.project.board.repository.BoardRepository;
@@ -25,7 +26,7 @@ public class BoardService {
   }
 
   @Transactional(readOnly = true)
-  public BoardDTO findBoardWithDetailsAndComments(Integer id) {
+  public BoardWithDetailAndComments findBoardWithDetailsAndComments(Integer id) {
       return boardRepository.findBoardWithDetailsAndComments(id)
           .orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다."));
   }

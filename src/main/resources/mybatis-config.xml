@@ -13,6 +13,9 @@
 	  <typeAlias type="kr.co.mini.project.board.entity.Board" alias="Board"/>
 		<typeAlias type="kr.co.mini.project.board.dto.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="kr.co.mini.project.board.dto.BoardWithDetailDTO" alias="BoardWithDetailDTO"/>
+		<typeAlias type="kr.co.mini.project.board.dto.BoardWithDetailAndComments" alias="BoardWithDetailAndComments"/>
+		<typeAlias type="kr.co.mini.project.comment.entity.Comment" alias="Comment"/>
+		<typeAlias type="kr.co.mini.project.comment.dto.CommentDTO" alias="CommentDTO"/>
 	</typeAliases>
 	
 </configuration>

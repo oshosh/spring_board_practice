@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import kr.co.mini.common.dto.CommonResponseDto;
 import kr.co.mini.project.board.dto.BoardDTO;
+import kr.co.mini.project.board.dto.BoardWithDetailAndComments;
 import kr.co.mini.project.board.dto.BoardWithDetailDTO;
 import kr.co.mini.project.board.service.BoardService;
 
@@ -30,10 +31,10 @@ public class BoardApiController {
     /**
      * 게시물 상세 + 코멘트까지
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<BoardDTO> getBoard(@PathVariable Integer id) {
-        BoardDTO boardDTO = boardService.findBoardWithDetailsAndComments(id);
-        return ResponseEntity.ok(boardDTO);
+    @GetMapping("/detail")
+    public ResponseEntity<BoardWithDetailAndComments> getBoard(@RequestParam("id") Integer id) {
+        BoardWithDetailAndComments boardWithDetailAndComments = boardService.findBoardWithDetailsAndComments(id);
+        return ResponseEntity.ok(boardWithDetailAndComments);
     }
 
     @PostMapping

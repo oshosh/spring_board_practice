@@ -13,21 +13,43 @@
         LEFT JOIN board_detail bd ON b.id = bd.boards_id
     </select>
 
-    <select id="findBoardWithDetailsAndComments" resultType="BoardDTO">
+    <!-- 게시판 상세 내용을 조회 후 상세와 겹치는 댓글 목록은 BoardWithCommentsResultMap로 반환 처리  -->
+    <select id="findBoardWithDetailsAndComments" resultMap="BoardWithCommentsResultMap">
         SELECT 
             b.id AS boards_num,
-            bd.content AS board_content,
-            u.name AS board_creator_name,
-            c.comment,
-            c.created_at AS comment_created_at,
-            cu.name AS commenter_name
+            bd.content AS content,        
+            u.name AS user_name,         
+            b.created_at,                
+            b.updated_at
         FROM boards b
         LEFT JOIN users u ON b.user_id = u.id 
         LEFT JOIN board_detail bd ON b.id = bd.boards_id
-        LEFT JOIN comments c ON bd.boards_id = c.board_detail_id  
-        LEFT JOIN users cu ON c.user_id = cu.id  
         WHERE b.id = #{id}
     </select>
+
+    <!-- 게시판 상세에 있는 댓글 목록을 가져옴  -->
+    <select id="findCommentsByBoardId" resultType="CommentDTO">
+        SELECT 
+            c.user_id,
+            c.board_detail_id,
+            c.comment,
+            c.created_at,
+            u.name AS commenter_name
+        FROM comments c
+        LEFT JOIN users u ON c.user_id = u.id
+        WHERE c.board_detail_id = #{boardId}
+    </select>
+
+    <!-- 게시판 상세에 있는 댓글 목록을 묶어서 컬렉션으로 반환 처리 BoardWithDetailAndComments -->
+    <resultMap id="BoardWithCommentsResultMap" type="BoardWithDetailAndComments">
+        <id property="boardsNum" column="boards_num"/>
+        <result property="content" column="content"/>
+        <result property="userName" column="user_name"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+        <collection property="comments" column="boards_num" 
+                    select="findCommentsByBoardId"/>
+    </resultMap>
 
     <insert id="save" parameterType="Board" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO boards (user_id) VALUES (#{userId})
