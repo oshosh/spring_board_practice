@@ -27,7 +27,11 @@ public class SecurityConfig {
             .anyRequest().authenticated() // 그 외는 전부 인증 필요
         )
         .sessionManagement(session -> session
-            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+            .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+            .invalidSessionUrl("/api/users/force-login") // 세션이 무효화되면 이동할 URL
+                .maximumSessions(1) // 동시 세션 제한
+                .maxSessionsPreventsLogin(false) // 새로운 로그인 시 이전 세션 만료
+                .expiredUrl("/api/users/force-login") // 세션 만료시 이동할 URL
         )
         .formLogin(form -> form
             .permitAll()

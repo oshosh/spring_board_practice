@@ -24,6 +24,7 @@ public class BoardApiController {
 
     /**
      * 게시물 목록
+     * http://localhost:8080/api/boards/list
      */
     @GetMapping("/list")
     public ResponseEntity<List<BoardWithDetailDTO>> getAllBoards() {
@@ -33,6 +34,7 @@ public class BoardApiController {
 
     /**
      * 게시물 상세 + 코멘트까지
+     * http://localhost:8080/api/boards/detail?id=1
      */
     @GetMapping("/detail")
     public ResponseEntity<BoardWithDetailAndComments> getBoard(@RequestParam("id") Integer id) {
@@ -40,6 +42,13 @@ public class BoardApiController {
         return ResponseEntity.ok(boardWithDetailAndComments);
     }
 
+    /*
+     * 게시물 생성 하기
+     * http://localhost:8080/api/boards
+     * {
+     * "content": "이것은 새로운 게시글입니다."
+     * }
+     */
     @PostMapping
     public ResponseEntity<CommonResponseDto> createBoard(@RequestBody Map<String, Object> request) {
         // 현재 인증된 사용자 정보 가져오기
@@ -56,18 +65,28 @@ public class BoardApiController {
         return ResponseEntity.ok(new CommonResponseDto("OK", "새로운 게시물이 생성되었습니다."));
     }
 
-  
-
-    @PutMapping("/{id}")
+    /*
+     * 게시물 수정 하기
+     * http://localhost:8080/api/boards/update?id=1
+     * {
+     * "content": "이것은 수정된 게시글입니다."
+     * }
+     */
+    @PutMapping("/update")
     public ResponseEntity<CommonResponseDto> updateBoardDetail(
-            @PathVariable Integer id,
+            @RequestParam("id") Integer id,
             @RequestBody Map<String, String> request) {
         boardService.updateBoardDetail(id, request.get("content"));
         return ResponseEntity.ok(new CommonResponseDto("OK", "게시물이 수정되었습니다."));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<CommonResponseDto> deleteBoard(@PathVariable Integer id) {
+    /*
+     * 게시물 삭제 하기
+     * http://localhost:8080/api/boards/delete?id=1
+     * 
+     */
+    @DeleteMapping("/delete")
+    public ResponseEntity<CommonResponseDto> deleteBoard(@RequestParam("id") Integer id) {
         boardService.deleteBoard(id);
         return ResponseEntity.ok(new CommonResponseDto("OK", "게시물이 삭제되었습니다."));
     }
