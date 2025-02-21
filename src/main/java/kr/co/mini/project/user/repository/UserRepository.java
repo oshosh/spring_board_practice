@@ -1,6 +1,8 @@
 package kr.co.mini.project.user.repository;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 import kr.co.mini.project.user.dao.UserDAO;
 import kr.co.mini.project.user.entity.User;
@@ -13,6 +15,10 @@ public class UserRepository {
 
     public List<User> findAll() {
         return userDAO.findAll();
+    }
+
+    public Optional<User> findByName(String name) {
+        return userDAO.findByName(name);
     }
 
     public User findById(Integer id) {

@@ -14,6 +14,7 @@ import lombok.Setter;
 public class UserDTO {
     private Integer id;
     private String name;
+    private String password;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

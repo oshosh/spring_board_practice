@@ -45,6 +45,7 @@ public class UserService {
         return new UserDTO(
             user.getId(),
             user.getName(),
+            user.getPassword(),
             user.getCreatedAt(),
             user.getUpdatedAt()
         );
@@ -54,6 +55,7 @@ public class UserService {
         return new User(
             dto.getId(),
             dto.getName(),
+            dto.getPassword(),
             dto.getCreatedAt(),
             dto.getUpdatedAt()
         );

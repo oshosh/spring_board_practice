@@ -81,6 +81,23 @@ public class GlobalExceptionAdvice {
 		return ResponseEntity.status(httpStatus).body(new CommonResponseDto(httpStatus.name(), message));
 	}
 
+  @ExceptionHandler(org.springframework.security.access.AccessDeniedException.class)
+  public ResponseEntity<CommonResponseDto> handleAccessDeniedException(
+          org.springframework.security.access.AccessDeniedException ex) {
+      return ResponseEntity
+              .status(HttpStatus.UNAUTHORIZED)
+              .body(new CommonResponseDto("UNAUTHORIZED", "사용자가 인증되지 않았습니다."));
+  }
+
+  @ExceptionHandler(org.springframework.security.core.AuthenticationException.class)
+  public ResponseEntity<CommonResponseDto> handleAuthenticationException(
+          org.springframework.security.core.AuthenticationException ex) {
+      return ResponseEntity
+              .status(HttpStatus.UNAUTHORIZED)
+              .body(new CommonResponseDto("UNAUTHORIZED", "사용자가 인증되지 않았습니다."));
+  }
+
+
 	/**
 	 * 익셉션을 통해 httpStatusCode 를 취득한다.
 	 */

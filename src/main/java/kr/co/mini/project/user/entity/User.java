@@ -17,6 +17,7 @@ import lombok.Setter;
 public class User {
     private Integer id;
     private String name;
+    private String password; // alert table 필요함 지금
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
