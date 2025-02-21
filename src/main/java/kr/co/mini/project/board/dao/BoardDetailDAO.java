@@ -1,7 +1,8 @@
-package kr.co.mini.project.boardDetail.dao;
+package kr.co.mini.project.board.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import kr.co.mini.project.boardDetail.entity.BoardDetail;
+
+import kr.co.mini.project.board.entity.BoardDetail;
 
 @Mapper
 public interface BoardDetailDAO {

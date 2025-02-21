@@ -1,6 +1,8 @@
 package kr.co.mini.project.board.controller;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,9 +20,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/boards")
-@RequiredArgsConstructor
 public class BoardApiController {
     private final BoardService boardService;
+
+    @Autowired
+    public BoardApiController(BoardService boardService) {
+        this.boardService = boardService;
+    }
 
     /**
      * 게시물 목록

@@ -1,10 +1,10 @@
-package kr.co.mini.project.boardDetail.repository;
+package kr.co.mini.project.board.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import kr.co.mini.project.boardDetail.dao.BoardDetailDAO;
-import kr.co.mini.project.boardDetail.entity.BoardDetail;
+import kr.co.mini.project.board.dao.BoardDetailDAO;
+import kr.co.mini.project.board.entity.BoardDetail;
 
 @Repository
 @RequiredArgsConstructor
